@@ -16,7 +16,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <header class="bg-blue-700 text-white shadow-lg fixed top-0 left-0 right-0 z-50">
   <div class="container mx-auto flex justify-between items-center py-4 px-6">
-    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-wide text-white dc-text-3d">🩺 {{ _('Diabetes Care') }}</h1>
+    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-wide text-white dc-text-3d">{{ _('Diabetes Care') }}</h1>
     <nav class="flex items-center gap-4">
       <ul class="flex space-x-4 sm:space-x-6 text-base sm:text-lg font-semibold">
         <li><a href="/" class="hover:text-blue-300 transition">{{ _('Home') }}</a></li>
@@ -29,7 +29,6 @@
       <!-- Language Selector -->
       <div class="relative ml-4">
         <button id="lang-btn" class="flex items-center space-x-1 px-3 py-1 rounded hover:bg-blue-600 transition text-sm" aria-label="{{ _('Select language') }}">
-          <span>🌐</span>
           <span id="current-lang">{{ languages.get(current_language, 'English') }}</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>

@@ -22,7 +22,7 @@
     <div class="container mx-auto flex justify-between items-center py-4 px-6">
       <h1 class="text-4xl font-extrabold text-3d hover:scale-[1.03] transition-transform duration-300">
         <a href="/" class="flex items-center gap-3 cursor-pointer no-underline">
-          🩺 {{ _('Diabetes Care') }}
+          {{ _('Diabetes Care') }}
         </a>
       </h1>
       <nav class="flex items-center gap-4">
@@ -36,7 +36,6 @@
         <!-- Language Selector -->
         <div class="relative ml-4">
           <button id="lang-btn" class="flex items-center space-x-1 px-3 py-1 rounded hover:bg-blue-600 transition text-sm">
-            <span>🌐</span>
             <span>{{ languages.get(current_language, 'English') }}</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -132,11 +131,11 @@
       {% endif %}
 
       <a href="/explore" class="mt-8 block mx-auto max-w-xl text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-2xl py-4 shadow-md transition-transform duration-300 hover:scale-105 select-none">
-        📊 {{ _('Explore Dataset') }}
+        {{ _('Explore Dataset') }}
       </a>
 
       <a href="/life" class="mt-8 block mx-auto max-w-xl text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-2xl py-4 shadow-md transition-transform duration-300 hover:scale-105 select-none">
-        📊 {{ _('CHECK YOUR LIFESTYLE') }}
+        {{ _('CHECK YOUR LIFESTYLE') }}
       </a>
     </section>
   </main>

@@ -35,7 +35,7 @@
   
   <header class="bg-blue-700 text-white shadow-lg sticky top-0 z-50">
     <div class="container mx-auto flex justify-between items-center py-4 px-6">
-      <h1 class="text-2xl font-extrabold">🩺 {{ _('Diabetes Care') }}</h1>
+      <h1 class="text-2xl font-extrabold">{{ _('Diabetes Care') }}</h1>
       <nav class="flex items-center gap-4">
         <ul class="flex space-x-4 text-base font-semibold">
           <li><a href="/index" class="hover:text-blue-300">{{ _('Prediction') }}</a></li>
@@ -47,7 +47,6 @@
         <!-- Language Selector -->
         <div class="relative ml-4">
           <button id="lang-btn" class="flex items-center space-x-1 px-3 py-1 rounded hover:bg-blue-600 transition text-sm">
-            <span>🌐</span>
             <span>{{ languages.get(current_language, 'English') }}</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -68,7 +67,7 @@
 
   <main class="flex-grow flex items-center justify-center p-6">
     <div class="max-w-2xl w-full bg-white/30 backdrop-blur-md rounded-2xl shadow-2xl p-8 border border-white/20">
-      <h2 class="text-3xl font-extrabold mb-6 text-center text-blue-800 tracking-wide">🌿 {{ _('Personalized Lifestyle Plan') }}</h2>
+      <h2 class="text-3xl font-extrabold mb-6 text-center text-blue-800 tracking-wide">{{ _('Personalized Lifestyle Plan') }}</h2>
 
       <form id="planForm" class="space-y-5">
         <div>
@@ -97,7 +96,7 @@
 
         <button type="submit" id="submitBtn"
           class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-2.5 rounded-xl shadow-lg hover:scale-105 transition-transform duration-200 flex items-center justify-center gap-2">
-          <span id="btnText">🔍 {{ _('Generate Plan') }}</span>
+          <span id="btnText">{{ _('Generate Plan') }}</span>
           <span id="btnSpinner" class="loading-spinner hidden"></span>
         </button>
       </form>
@@ -114,10 +113,10 @@
     const btnSpinner = document.getElementById('btnSpinner');
 
     const GENERATING_TEXT = "{{ _('Generating...') }}";
-    const GENERATE_TEXT = "🔍 {{ _('Generate Plan') }}";
+    const GENERATE_TEXT = "{{ _('Generate Plan') }}";
     const ERROR_TEXT = "{{ _('Something went wrong. Please try again.') }}";
 
-    const categoryIcons = { diet: '🍽️', exercise: '🏃', stress: '🧘', sleep: '😴', monitoring: '📊' };
+    const categoryIcons = { diet: '', exercise: '', stress: '', sleep: '', monitoring: '' };
     const categoryTitles = {
       diet: "{{ _('Diet & Nutrition') }}",
       exercise: "{{ _('Exercise & Activity') }}",
@@ -138,7 +137,7 @@
       
       let profileHtml = `
         <div class="mb-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
-          <h3 class="text-lg font-semibold text-blue-800 mb-2">📋 {{ _('Your Profile') }}</h3>
+          <h3 class="text-lg font-semibold text-blue-800 mb-2">{{ _('Your Profile') }}</h3>
           <div class="grid grid-cols-3 gap-4 text-sm">
             <div><span class="text-gray-600">{{ _('Age') }}:</span> <strong>${profile.age}</strong> (${profile.age_group})</div>
             <div><span class="text-gray-600">{{ _('BMI') }}:</span> <strong>${profile.bmi}</strong> (${profile.bmi_category})</div>
@@ -147,7 +146,7 @@
         </div>
       `;
 
-      let planHtml = '<h3 class="text-2xl font-semibold mb-4 text-blue-700">🧠 {{ _("Your Custom Lifestyle Plan") }}</h3>';
+      let planHtml = '<h3 class="text-2xl font-semibold mb-4 text-blue-700">{{ _("Your Custom Lifestyle Plan") }}</h3>';
       planHtml += '<div class="grid gap-4">';
 
       for (const [category, tips] of Object.entries(plan)) {
@@ -159,7 +158,7 @@
                 <h4 class="font-semibold text-gray-800">${categoryTitles[category] || category}</h4>
               </div>
               <ul class="space-y-2">
-                ${tips.map(tip => `<li class="flex items-start gap-2 text-gray-700"><span class="text-green-500 mt-1">✓</span><span>${tip}</span></li>`).join('')}
+                ${tips.map(tip => `<li class="flex items-start gap-2 text-gray-700"><span class="text-green-500 mt-1">*</span><span>${tip}</span></li>`).join('')}
               </ul>
             </div>
           `;
@@ -168,7 +167,7 @@
 
       planHtml += '</div>';
       if (source === 'ai') {
-        planHtml += '<p class="text-xs text-gray-500 mt-4 text-center">✨ {{ _("Personalized with AI") }}</p>';
+        planHtml += '<p class="text-xs text-gray-500 mt-4 text-center">{{ _("Personalized with AI") }}</p>';
       }
 
       resultDiv.innerHTML = profileHtml + planHtml;

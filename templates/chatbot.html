@@ -149,7 +149,7 @@
 <body class="min-h-screen flex flex-col">
     <header class="navbar">
         <div class="navbar-inner">
-          <h1 class="navbar-title">🩺 {{ _('Diabetes Care') }}</h1>
+          <h1 class="navbar-title">{{ _('Diabetes Care') }}</h1>
           <nav class="flex items-center gap-4">
             <ul class="navbar-links">
               <li><a href="/index">{{ _('Prediction') }}</a></li>
@@ -161,7 +161,6 @@
             <!-- Language Selector -->
             <div class="relative ml-4">
               <button id="lang-btn" class="flex items-center space-x-1 px-3 py-1 rounded hover:bg-blue-600 transition text-sm text-white">
-                <span>🌐</span>
                 <span>{{ languages.get(current_language, 'English') }}</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
