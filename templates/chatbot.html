@@ -203,7 +203,7 @@
     <main class="flex-grow flex justify-center items-center p-5">
         <div class="chat-container">
             <div class="chat-header">
-                Diabetes Expert Chatbot
+                {{ _('Diabetes Expert Chatbot') }}
             </div>
             <div class="chat-messages" id="chat-messages">
                 <div class="message bot">
@@ -212,8 +212,8 @@
                 </div>
             </div>
             <div class="chat-input">
-                <input type="text" id="user-input" placeholder="Type your message...">
-                <button onclick="sendMessage()">Send</button>
+                <input type="text" id="user-input" placeholder="{{ _('Type your message...') }}">
+                <button onclick="sendMessage()">{{ _('Send') }}</button>
             </div>
         </div>
     </main>

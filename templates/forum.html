@@ -109,7 +109,7 @@
 <body class="bg-gradient-to-br from-blue-50 to-white text-gray-800 min-h-screen flex flex-col font-sans">
   <header class="bg-blue-700 text-white shadow-lg sticky top-0 z-50">
     <div class="container mx-auto flex justify-between items-center py-5 px-6">
-      <h1 class="text-3xl md:text-4xl font-extrabold tracking-wide">🩺 Diabetes Care</h1>
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-wide">🩺 {{ _('Diabetes Care') }}</h1>
 
       <div class="flex items-center gap-4">
         <!-- Desktop Nav -->
@@ -307,7 +307,6 @@
     const notificationDropdown = $('notificationDropdown'), notificationList = $('notificationList');
     const markAllReadBtn = $('markAllRead'), openSettingsBtn = $('openSettings');
     const settingsModal = $('settingsModal'), saveSettingsBtn = $('saveSettings');
-    const saveSettingsBtn = $('saveSettings');
 
     let currentUser = JSON.parse(localStorage.getItem('forumUser')) || null;
     const filterState = { search: '', startDate: null, endDate: null, page: 1, perPage: 10 };
