@@ -11,7 +11,7 @@ import pickle
 import re
 import sys
 import threading
-from datetime import datetime
+from datetime import datetime, timezone
 
 # ✅ Correct Gemini import
 import google.generativeai as genai
@@ -490,16 +490,21 @@ def parse_post_timestamp(timestamp_str):
     """
     Parse ISO timestamp string to datetime object.
     Handles timestamps with or without 'Z' suffix.
+    Returns UTC datetime objects for consistent timezone handling.
     """
     if not timestamp_str:
-        return datetime.min
-    
+        return datetime.min.replace(tzinfo=timezone.utc)
+
     # Remove 'Z' suffix if present and parse
     ts = timestamp_str.rstrip('Z')
     try:
-        return datetime.fromisoformat(ts)
+        dt = datetime.fromisoformat(ts)
+        # If the datetime is naive, assume it's UTC
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt
     except ValueError:
-        return datetime.min
+        return datetime.min.replace(tzinfo=timezone.utc)
 
 
 def paginate_posts(posts_list, page=1, per_page=10):
