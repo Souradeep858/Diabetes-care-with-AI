@@ -1,78 +1,231 @@
-# Contributor Covenant Code of Conduct
+# Contributing to Diabetes Care with AI 🩺
 
-## Our Pledge
+Thank you for your interest in contributing!  
+This project leverages AI to provide accessible diabetes risk assessment and health information.  
+We welcome contributions from developers, data scientists, and UI/UX designers of all skill levels.
 
-We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+---
 
-We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
+## 🚀 Quick Start Guide
 
-## Our Standards
+### 1. Fork and Clone
 
-Examples of behavior that contributes to a positive environment for our community include:
+- Fork the repository on GitHub.
+- Clone your fork locally:
 
-- Demonstrating empathy and kindness toward other people
-- Being respectful of differing opinions, viewpoints, and experiences
-- Giving and gracefully accepting constructive feedback
-- Accepting responsibility and apologizing to those affected by our mistakes, and learning from the experience
-- Focusing on what is best not just for us as individuals, but for the overall community
+```bash
+git clone https://github.com/YOUR_USERNAME/Diabetes-care-with-AI.git
+cd Diabetes-care-with-AI
+```
 
-Examples of unacceptable behavior include:
+- Add the upstream remote:
 
-- The use of sexualized language or imagery, and sexual attention or advances of any kind
-- Trolling, insulting or derogatory comments, and personal or political attacks
-- Public or private harassment
-- Publishing others' private information, such as a physical or email address, without their explicit permission
-- Other conduct which could reasonably be considered inappropriate in a professional setting
+```bash
+git remote add upstream https://github.com/Anshika09Singh/Diabetes-care-with-AI.git
+```
 
-## Scope
+---
 
-This Code of Conduct applies within all community spaces, including:
+### 2. Environment Setup
 
-- GitHub issues, pull requests, and discussions
-- Project documentation and comments
-- Community forums and chat channels
-- Any other spaces where the community interacts
+```bash
+# Create and activate virtual environment
+python -m venv venv
 
-This Code of Conduct also applies when an individual is officially representing the community in public spaces.
+# Windows
+.\venv\Scripts\activate
 
-## Enforcement
+# macOS/Linux
+source venv/bin/activate
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainers. All complaints will be reviewed and investigated promptly and fairly.
+# Install dependencies
+pip install -r requirements.txt
+```
 
-All community leaders are obligated to respect the privacy and security of the reporter of any incident.
+---
 
-## Enforcement Guidelines
+### 3. Configuration
 
-Community leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:
+Create a `.env` file in the root directory:
 
-### 1. Correction
+```env
+GEMINI_API_KEY=your_api_key_here
+```
 
-**Community Impact**: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.
+> ⚠️ Do not commit the `.env` file. It is ignored via `.gitignore`.
 
-**Consequence**: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.
+---
 
-### 2. Warning
+### 4. Run the Application
 
-**Community Impact**: A violation through a single incident or series of actions.
+```bash
+# Development mode
+python app.py
 
-**Consequence**: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.
+# Production mode (Gunicorn)
+gunicorn app:app --bind 0.0.0.0:5000
+```
 
-### 3. Temporary Ban
+Access the app at: **http://localhost:5000**
 
-**Community Impact**: A serious violation of community standards, including sustained inappropriate behavior.
+---
 
-**Consequence**: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.
+## 📂 Project Structure
 
-### 4. Permanent Ban
+| File / Folder | Description |
+|--------------|------------|
+| `app.py` | Flask application core (Routes, ML logic, Gemini API) |
+| `diabetes_model.pkl` | Trained scikit-learn model |
+| `scaler.pkl` | StandardScaler for feature normalization |
+| `train.ipynb` | Model training & EDA notebook |
+| `templates/` | Jinja2 HTML templates |
+| `static/` | CSS, JS, and image assets |
 
-**Community Impact**: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.
+---
 
-**Consequence**: A permanent ban from any sort of public interaction within the community.
+## 🔌 API Endpoints
 
-## Attribution
+### Web Interface
+- `GET /` : Landing Page  
+- `GET /index` : Diabetes Prediction Form  
+- `GET /chatbot` : AI Assistant Interface  
+- `GET /forum` : Community Forum  
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1, available at [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).
+### Backend API
+- `POST /predict` : Processes health data and returns diabetes risk  
+- `POST /generate` : Gemini AI chatbot interface  
+  ```json
+  { "message": "string" }
+  ```
+- `GET /api/posts` : Fetch all forum entries  
 
-Community Impact Guidelines were inspired by [Mozilla's code of conduct enforcement ladder](https://github.com/mozilla/diversity).
+---
+# 💡 What Can You Contribute?
 
-For answers to common questions about this code of conduct, see the FAQ at [https://www.contributor-covenant.org/faq](https://www.contributor-covenant.org/faq).
+## 🐛 Bug Fixes
+
+Found a bug?
+Open an issue describing the bug.
+Include steps to reproduce it.
+After discussing, submit a PR that resolves it.
+
+## ✨ New Features
+
+Have an idea that would improve the project?
+Propose it via an issue (with context/value).
+Fork and develop on a feature branch:
+git checkout -b feature/your-feature-name
+
+## 📝 Documentation Improvements
+
+Good docs matter! You can help by:
+Improving the README
+Adding usage examples
+Clarifying parts of the contribution guide
+
+## 🧪 Tests
+
+Help us improve stability by:
+
+Adding or updating tests in tests/
+Ensuring coverage for new features
+
+## 🎯 Commit Message Guidelines
+
+Please use conventional commits to keep history readable
+
+feat: — a new feature
+
+fix: — bug fix
+
+docs: — documentation only changes
+
+style: — formatting/style changes
+
+refactor: — code restructuring
+
+test: — adding or updating tests
+
+Example:
+
+```
+
+    git commit -m "feat: add health dashboard component"
+
+```
+---
+## 🛠 Contribution Workflow
+
+### 1. Pick an Issue
+- Check the **Issues** tab for bugs or feature requests.
+- If you have a new idea, open an issue first for discussion.
+
+---
+
+### 2. Branching and Commits
+
+Create a feature branch:
+
+```bash
+git checkout -b feat/your-feature-name
+```
+
+We follow **Conventional Commits**:
+
+- `feat:` A new feature  
+- `fix:` A bug fix  
+- `docs:` Documentation changes  
+- `style:` Formatting / lint fixes  
+- `refactor:` Code restructuring  
+
+---
+
+### 3. Submit a Pull Request
+
+1. Push your branch:
+```bash
+git push origin feat/your-feature-name
+```
+2. Open a PR against the `main` branch.
+3. Link the related issue (e.g., `Closes #52`).
+4. Add screenshots for UI changes.
+
+---
+
+## ❓ Troubleshooting
+
+### Issue: `GEMINI_API_KEY` not found
+- Ensure `.env` exists in the root directory.
+- Variable name must be **exactly** `GEMINI_API_KEY`.
+
+### Issue: Model file not found (`.pkl`)
+- Run `train.ipynb` to regenerate the model and scaler.
+
+### Issue: Port 5000 already in use
+
+**Windows**
+```bash
+netstat -ano | findstr :5000
+taskkill /PID <PID> /F
+```
+
+**macOS/Linux**
+```bash
+lsof -i :5000
+kill -9 <PID>
+```
+
+---
+
+## ⚖️ Community Standards
+
+Please be respectful and professional in all interactions.  
+We aim to build a supportive and inclusive environment for healthcare innovation.
+
+---
+
+💬 **Questions?**  
+Open an issue or comment on your Pull Request.
+
+Happy coding! 🚀
+Thank you for making Diabetes-care-with-AI better! ❤️
