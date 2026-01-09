@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth"></html>
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ _('Diabetes Care Home') }}</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
+   <script>
+  tailwind.config = {
+    darkMode: 'class'
+  }
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     .gradient-bg {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
@@ -255,6 +261,66 @@
   font-size: 13px;
   opacity: 0.8;
 }
+/*Light/Dark mode*/
+.theme-btn {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  padding: 8px 10px;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.theme-btn:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.1);
+}
+
+/* DARK MODE VARIABLES */
+.dark {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+}
+
+/* Apply globally */
+.dark body {
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* Sections */
+.dark section,
+.dark .glass-card{
+  background: var(--bg-card) !important;
+  color: var(--text-main);
+}
+.dark .f
+.dark p {
+  color: var(--text-muted);
+}
+
+/* Navbar */
+.dark .navbar {
+  background: linear-gradient(135deg, #020617, #020617);
+}
+
+/* Footer */
+.dark .footer {
+  background: #020617;
+}
+
+/* Links */
+.dark a {
+  color: #93c5fd;
+}
+
+.dark a:hover {
+  color: #bfdbfe;
+}
 
 /* 📱 Responsive */
 @media (max-width: 900px) {
@@ -365,6 +431,10 @@
           <option value="es">Spanish</option>
         </select>
       </div>
+      <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+        <i class="fa-solid fa-sun"></i>
+      </button>
+
       <button class="btn-primary">Get Started</button>
     </div>
   </div>
@@ -413,19 +483,19 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div class="p-4">
           <p class="text-4xl font-extrabold stat-counter">95%</p>
-          <p class="text-gray-600 mt-2">{{ _('Prediction Accuracy') }}</p>
+          <p class="text-grey-200 darkMode:text-slate-100 mt-2">{{ _('Prediction Accuracy') }}</p>
         </div>
         <div class="p-4">
           <p class="text-4xl font-extrabold stat-counter">24/7</p>
-          <p class="text-gray-600 mt-2">{{ _('AI Chatbot Support') }}</p>
+          <p class="text-grey-200 darkMode:text-slate-100 mt-2">{{ _('AI Chatbot Support') }}</p>
         </div>
         <div class="p-4">
           <p class="text-4xl font-extrabold stat-counter">5+</p>
-          <p class="text-gray-600 mt-2">{{ _('Languages Supported') }}</p>
+          <p class="text-grey-200 darkMode:text-slate-100 mt-2">{{ _('Languages Supported') }}</p>
         </div>
         <div class="p-4">
           <p class="text-4xl font-extrabold stat-counter">100%</p>
-          <p class="text-gray-600 mt-2">{{ _('Free & Open Source') }}</p>
+          <p class="text-grey-200 darkMode:text-slate-100 mt-2">{{ _('Free & Open Source') }}</p>
         </div>
       </div>
     </div>
@@ -435,8 +505,8 @@
   <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">{{ _('Powerful Features') }}</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">{{ _('Everything you need to manage and understand diabetes better') }}</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-grey-600 darkMode:text-slate-100 mb-4">{{ _('Powerful Features') }}</h2>
+        <p class="text-grey-200 darkMode:text-slate-100 max-w-2xl mx-auto">{{ _('Everything you need to manage and understand diabetes better') }}</p>
       </div>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -447,8 +517,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">{{ _('Diabetes Prediction') }}</h3>
-          <p class="text-gray-600">{{ _('Get instant AI-powered predictions based on your health metrics with high accuracy.') }}</p>
+          <h3 class="text-xl font-bold text-grey-600 darkMode:text-slate-100 mb-3">{{ _('Diabetes Prediction') }}</h3>
+          <p class="text-grey-200 darkMode:text-slate-100">{{ _('Get instant AI-powered predictions based on your health metrics with high accuracy.') }}</p>
         </a>
 
         <!-- Lifestyle Card -->
@@ -458,8 +528,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">{{ _('Lifestyle Check') }}</h3>
-          <p class="text-gray-600">{{ _('Analyze your daily habits and get personalized recommendations for a healthier life.') }}</p>
+          <h3 class="text-xl font-bold text-grey-600 darkMode:text-slate-100 mb-3">{{ _('Lifestyle Check') }}</h3>
+          <p class="text-grey-200 darkMode:text-slate-100">{{ _('Analyze your daily habits and get personalized recommendations for a healthier life.') }}</p>
         </a>
 
         <!-- Chatbot Card -->
@@ -469,8 +539,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">{{ _('AI Chatbot') }}</h3>
-          <p class="text-gray-600">{{ _('Chat with our intelligent assistant for instant answers to your diabetes questions.') }}</p>
+          <h3 class="text-xl font-bold text-grey-600 darkMode:text-slate-100 mb-3">{{ _('AI Chatbot') }}</h3>
+          <p class="text-grey-200 darkMode:text-slate-100">{{ _('Chat with our intelligent assistant for instant answers to your diabetes questions.') }}</p>
         </a>
 
         <!-- Explore Card -->
@@ -480,8 +550,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">{{ _('Explore Data') }}</h3>
-          <p class="text-gray-600">{{ _('Visualize and analyze diabetes datasets with interactive charts and insights.') }}</p>
+          <h3 class="text-xl font-bold text-grey-600 darkMode:text-slate-100 mb-3">{{ _('Explore Data') }}</h3>
+          <p class="text-grey-200 darkMode:text-slate-100">{{ _('Visualize and analyze diabetes datasets with interactive charts and insights.') }}</p>
         </a>
 
         <!-- Forum Card -->
@@ -491,8 +561,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">{{ _('Community Forum') }}</h3>
-          <p class="text-gray-600">{{ _('Connect with others, share experiences, and support the diabetes care community.') }}</p>
+          <h3 class="text-xl font-bold text-grey-600 darkMode:text-slate-100 mb-3">{{ _('Community Forum') }}</h3>
+          <p class="text-grey-200 darkMode:text-slate-100">{{ _('Connect with others, share experiences, and support the diabetes care community.') }}</p>
         </a>
 
         <!-- Multi-language Card -->
@@ -502,8 +572,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">{{ _('Multi-Language') }}</h3>
-          <p class="text-gray-600">{{ _('Available in English, Spanish, French, Hindi, and Chinese for global accessibility.') }}</p>
+          <h3 class="text-xl font-bold text-grey-600 darkMode:text-slate-100 mb-3">{{ _('Multi-Language') }}</h3>
+          <p class="text-grey-200 darkMode:text-slate-100">{{ _('Available in English, Spanish, French, Hindi, and Chinese for global accessibility.') }}</p>
         </div>
       </div>
     </div>
@@ -582,5 +652,30 @@
       .catch(err => console.error('Language switch failed:', err));
     }
   </script>
+   <script>
+    const toggleBtn = document.getElementById("theme-toggle");
+const icon = toggleBtn.querySelector("i");
+const root = document.documentElement;
+
+// Load saved theme
+if (localStorage.getItem("theme") === "dark") {
+  root.classList.add("dark");
+  icon.classList.replace("fa-moon", "fa-sun");
+}
+
+toggleBtn.addEventListener("click", () => {
+  root.classList.toggle("dark");
+
+  if (root.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+    icon.classList.replace("fa-moon", "fa-sun");
+  } else {
+    localStorage.setItem("theme", "light");
+    icon.classList.replace("fa-sun", "fa-moon");
+  }
+});
+
+  </script>
 </body>
+</html>
 </html>
