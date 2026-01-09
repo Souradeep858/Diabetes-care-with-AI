@@ -137,6 +137,58 @@
   color: var(--text-white);
   font-weight: 700;
 }
+.nav-toggle {
+  display: none;
+  font-size: 26px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.nav-close {
+  display: none;
+}
+
+/* 📱 Mobile Navbar */
+@media (max-width: 992px) {
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+    background: #0a66c2;
+    flex-direction: column;
+    align-items: center;
+    padding: 70px 20px;
+    gap: 20px;
+    transition: 0.35s ease-in-out;
+    z-index: 9999;
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-close {
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .nav-link {
+    color: #fff;
+    font-size: 16px;
+  }
+}
 
 /* Utility Section */
 .nav-utils {
@@ -275,12 +327,12 @@
   }
 }
 /* Responsive (Mobile) */
-@media (max-width: 992px) {
+/* @media (max-width: 992px) {
   .nav-menu {
     display: none; /* In a real PR, you'd add a hamburger menu toggle here */
-  }
+  /*}
   
-}
+} */
 @media (max-width: 480px) {
   .navbar {
     padding: 14px 10px; 
@@ -294,9 +346,9 @@
     gap: 6px; 
   }
   
-  .nav-menu {
+  /* .nav-menu {
     display: none;
-  }
+  } */
   
   .logo-text {
     font-size: 20px; 
@@ -347,7 +399,10 @@
     </a>
 
     <!-- Navigation Links -->
-    <ul class="nav-menu">
+    <ul class="nav-menu" id="nav-menu">
+      <div class="nav-close" onclick="toggleMobileMenu()">
+    <i class="fa-solid fa-xmark"></i>
+    </div>
       <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
       <li class="nav-item"><a href="#" class="nav-link">Prediction</a></li>
       <li class="nav-item"><a href="#" class="nav-link">Lifestyle Check</a></li>
@@ -366,6 +421,10 @@
         </select>
       </div>
       <button class="btn-primary">Get Started</button>
+      
+<div class="nav-toggle" onclick="toggleMobileMenu()">
+  <i class="fa-solid fa-bars"></i>
+</div>
     </div>
   </div>
 </nav>
@@ -582,5 +641,10 @@
       .catch(err => console.error('Language switch failed:', err));
     }
   </script>
+    <script>
+function toggleMobileMenu() {
+  document.getElementById("nav-menu").classList.toggle("active");
+}
+</script>
 </body>
 </html>
