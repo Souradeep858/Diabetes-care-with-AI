@@ -349,6 +349,18 @@
         if (menu) menu.classList.toggle('hidden');
       }
     </script>
+  <script>
+    // Wait until HTML is fully loaded
+    document.addEventListener("DOMContentLoaded", function () {
+      const getStartedBtn = document.getElementById("getStartedBtn");
+
+      // Attach click event
+      getStartedBtn.addEventListener("click", function () {
+        // Redirect to another page
+        window.location.href = "getStarted.html";
+      });
+    });
+  </script>
 
 </body>
 </html>
