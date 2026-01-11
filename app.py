@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 import seaborn as sns
-from flask import Flask, jsonify, render_template, request, make_response
+from flask import Flask, jsonify, render_template, request, make_response, session, redirect, url_for, flash
 from flask_cors import CORS
 from flask_mail import Mail, Message
 from flask_babel import Babel, gettext as _
@@ -125,6 +125,10 @@ mail = Mail(app)
 FORUM_TOPICS = ['General', 'Diet', 'Exercise', 'Medication', 'Lifestyle', 'Support']
 users = {}  # {user_id: {email, username, preferences, subscribed_posts}}
 notifications = []  # [{id, user_id, type, message, post_id, read, timestamp}]
+auth_users = {
+    # email: {name, email, password_hash}
+}
+
 
 # Setup logging
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG,
@@ -445,15 +449,27 @@ Keep each tip concise (1-2 sentences). Focus on diabetes-relevant advice. Format
     })
 
 @app.route('/generate', methods=['POST'])
-def chat_gemini():
-    data = request.get_json()
-    if not data or not data.get('message'):
-        return jsonify({'reply': "Please provide a message."}), 400
+def generate():
+    try:
+        user_input = request.json.get('message')
+        if not user_input:
+            return jsonify({'reply': "Please say something!"})
 
-    user_message = data['message']
-    bot_response = get_gemini_response(user_message)
-    return jsonify({'reply': bot_response})
+        api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            return jsonify({'reply': "Error: Gemini API Key not configured."})
 
+        client = genai.Client(api_key=api_key)
+        response = client.models.generate_content(
+            model='gemini-2.0-flash',
+            contents=user_input
+        )
+        reply_text = response.text
+        
+        return jsonify({'reply': reply_text})
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({'reply': "Sorry, I'm having trouble connecting to the AI right now."})
 
 # --- Forum Backend (Updated for Feature #113: SQLite) ---
 
